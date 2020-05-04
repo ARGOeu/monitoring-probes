@@ -21,11 +21,13 @@ List of existing probes can be found in [POEM](https://poem.argo.grnet.gr/ui/pub
 Some other conditions:
 
 * Each probe must provide the following arguments:
+
     ```
     -h help (--help)
     -t timeout (--timeout)
     ```
 * The following arguments can also be used if applicable:
+
     ```
     -H hostname (--hostname)
     -p port (--port)
@@ -43,6 +45,7 @@ Actual data is additional information about service behaviour that can be used i
 
 Some other conditions:
 * This is the expected format of actual data:
+
     ```buildoutcfg
     'label'=value[UOM];[warn];[crit];[min];[max]
     ```
@@ -66,26 +69,30 @@ Some considerations about structure:
     * `/etc/nagios/plugins/<probe_namespace>/`
     
 Some considerations about dependencies management:
+
 * Each probe is responsible for handling its dependencies.
 * The environment needed to execute each probe must be defined by the probe.
 
 # Integration, Testing and Deployment
 Each `<tenant|project|product team>` develops and tests its own probes in their development environments. Pre-requirements for the integration and testing of probes are:
-1. Each `<tenant|project|product team>` publishes probe(s) on an accessible:
+
+* Each `<tenant|project|product team>` publishes probe(s) on an accessible:
     * Git repository with a valid RPM spec file;
     * Yum repository with RPM packages.
-2. Each probe provides an accessible web page with the relevant documentation.
+* Each probe provides an accessible web page with the relevant documentation.
 
 Integration of new probes starts with adding above information into [POEM](http://argoeu.github.io/poem/v1/).
 
 ## Testing
 Testing consists of the following steps:
-1. If the probe is provided in Git repository ARGO will clone it and attempt to build the package. 
-2. ARGO will deploy the RPM package, test and validate the new probe.
+
+* If the probe is provided in Git repository ARGO will clone it and attempt to build the package. 
+* ARGO will deploy the RPM package, test and validate the new probe.
 
 ## Deployment
 Deployment consists of the following steps:
-1. ARGO in cooperation with the Service owner defines metric templates performed by the new probe in the POEM.
-2. Service owner adds mappings between service flavours and metrics in the POEM.
-3. ARGO in cooperation with the Service owner follows project’s procedures for deployment to production.
+
+* ARGO in cooperation with the Service owner defines metric templates performed by the new probe in the POEM.
+* Service owner adds mappings between service flavours and metrics in the POEM.
+* ARGO in cooperation with the Service owner follows project’s procedures for deployment to production.
 
