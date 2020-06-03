@@ -2,6 +2,8 @@
 This document describes the policy to develop, package and integrate new probes into the ARGO Monitoring Engine.
 
 # Development
+Before starting with development, check if probe already exists on [Nagios Exchange](https://exchange.nagios.org/).
+
 Please refer to the official Nagios documentation for probe development guidelines:
 
 * [Nagios Development Guidelines](https://nagios-plugins.org/doc/guidelines.html),
