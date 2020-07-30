@@ -54,7 +54,6 @@ Some other conditions:
 
 * This is the expected format of actual data:
 
-
     ```
     'label'=value[UOM];[warn];[crit];[min];[max]
     ```
