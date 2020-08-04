@@ -1,7 +1,11 @@
 # Overview
+
 This document describes the policy to develop, package and integrate new probes into the ARGO Monitoring Engine.
 
 # Development
+
+Before starting with development, check if probe already exists on [Nagios Exchange](https://exchange.nagios.org/).
+
 Please refer to the official Nagios documentation for probe development guidelines:
 
 * [Nagios Development Guidelines](https://nagios-plugins.org/doc/guidelines.html),
@@ -25,11 +29,12 @@ Some other conditions:
     ```
     -h help (--help)
     -t timeout (--timeout)
+    -H hostname (--hostname)
     ```
+  
 * The following arguments can also be used if applicable:
 
     ```
-    -H hostname (--hostname)
     -p port (--port)
     -u url (--url)
     -v verbose (--verbose)
@@ -38,18 +43,23 @@ Some other conditions:
     -u username (--username)
     -p password (--password)
     ```
+  
 * Maximum output size for test/plugin output is 16KB. Above that limit the output will be truncated.
 
 ## Actual Data
+
 Actual data is additional information about service behaviour that can be used in combination with threshold mechanisms to generate new metrics. Probes can report actual data by following the [Nagios guidelines for performance data](https://nagios-plugins.org/doc/guidelines.html#AEN200).
 
 Some other conditions:
+
 * This is the expected format of actual data:
 
-    ```buildoutcfg
+    ```
     'label'=value[UOM];[warn];[crit];[min];[max]
     ```
+    
 # Packaging
+
 Probes must be provided in the form of RPM packages, where a single package may contain multiple probes. Please refer to the official EPEL documentation for packaging:
 
 * [EPEL Guidelines And Policies](http://fedoraproject.org/wiki/EPEL/GuidelinesAndPolicies).
@@ -74,6 +84,7 @@ Some considerations about dependencies management:
 * The environment needed to execute each probe must be defined by the probe.
 
 # Integration, Testing and Deployment
+
 Each `<tenant|project|product team>` develops and tests its own probes in their development environments. Pre-requirements for the integration and testing of probes are:
 
 * Each `<tenant|project|product team>` publishes probe(s) on an accessible:
@@ -84,12 +95,14 @@ Each `<tenant|project|product team>` develops and tests its own probes in their 
 Integration of new probes starts with adding above information into [POEM](http://argoeu.github.io/poem/v1/).
 
 ## Testing
+
 Testing consists of the following steps:
 
 * If the probe is provided in Git repository ARGO will clone it and attempt to build the package. 
 * ARGO will deploy the RPM package, test and validate the new probe.
 
 ## Deployment
+
 Deployment consists of the following steps:
 
 * ARGO in cooperation with the Service owner defines metric templates performed by the new probe in the POEM.
